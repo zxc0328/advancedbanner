@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<title></title>
+<script type="text/javascript">
+$(document).ready(function(){
+var boxwidth;
+var boxheight;
+var leftnum;
+var current;
+var left;
+current = 0;
+
+boxwidth = $(".container").css("width");
+boxheight = $(".container").css("height");
+boxwidthnum = $(".container").width();
+
+$(".box").css("height",boxheight);
+$(".box").css("width",boxwidth);
+$(".bannerbox").width(boxwidthnum*($(".box").length));
+$(".bannerbox").css("height",boxheight);
+
+
+$("#prev").bind("click",function(){
+	prev(current);
+});
+
+
+$("#next").bind("click",function(){
+	next(current);
+});
+
+
+
+function next(num){
+	if (current == ($(".box").length-1))
+  {
+  current = 0;
+  $(".bannerbox").animate({left:current*(-boxwidthnum) + 'px'});
+  }
+else
+  {
+  current += 1;
+  $(".bannerbox").animate({left:current*(-boxwidthnum) + 'px'});
+ }
+};
+
+
+	function prev(num){
+	
+
+	if (current == 0)
+  {
+  current = $(".box").length-1;
+  $(".bannerbox").animate({left:current*(-boxwidthnum) + 'px'});
+  }
+else
+  {
+  current -= 1;
+  $(".bannerbox").animate({left:current*(-boxwidthnum) + 'px'});
+ 
+  }
+
+	
+};
+
+
+
+});
+</script>
+
+</head>
+<style>
+ul,li{
+list-style:none;
+margin:0px;
+padding:0px;
+}
+
+.box{
+float:left;
+overflow:hidden;
+display:block;
+}
+.container{
+height:300px;
+width:600px;
+overflow:hidden;
+position:relative;
+
+}
+.bannerbox{
+position:absolute;
+left:0;
+top:0;
+
+
+}
+</style>
+
+<body>
+<div class="container">
+	<ul class="bannerbox">
+		<li class="box"><img src="images/1.jpg"></li>
+		<li class="box"><img src="images/2.jpg"></li>
+		<li class="box"><img src="images/3.jpg"></li>
+	</ul>
+</div>  
+
+<button id="prev">prev</button>  
+<button id="next">next</button>  
+</body>
+
+</html>
